@@ -1,0 +1,44 @@
+{
+  "classes": {
+    "add_new_class": {
+      "text": "Add new class",
+      "name": {
+        "label": "Class"
+      },
+      "datetime": {
+        "label": "Time"
+      }
+    },
+    "add_new_attendee": {
+      "text": "Add new attendee",
+      "added": "Person added",
+      "person": {
+        "label": "Person"
+      },
+      "notes": {
+        "label": "Notes (optional)",
+        "hint": "Add here if the person in question is teaching, MuCie, board, etc."
+      }
+    },
+    "attendees": {
+      "text": "Attendees",
+      "headers": {
+        "full_name": "Name",
+        "email": "Email",
+        "student_number": "Student number",
+        "notes": "Notes"
+      }
+    },
+    "couples": "Couples",
+    "created": "Class created",
+    "create_couple": {
+      "text": "Create couple",
+      "created": "Couple created"
+    },
+    "headers": {
+      "name": "Class",
+      "day": "Day",
+      "date": "Date"
+    }
+  }
+}

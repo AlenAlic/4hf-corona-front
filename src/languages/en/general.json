@@ -1,0 +1,20 @@
+{
+  "general": {
+    "add": "Add",
+    "back_to_home_page": "Back to home page",
+    "cancel": "Cancel",
+    "classes": "Classes",
+    "close": "Close",
+    "create": "Create",
+    "delete": "Delete",
+    "edit": "Edit",
+    "go_back": "Go back",
+    "loading": "Loading...",
+    "nyi": "Not yet implemented",
+    "ok": "OK",
+    "profile": "Profile",
+    "people": "People",
+    "save_changes": "Save changes",
+    "security": "Security"
+  }
+}

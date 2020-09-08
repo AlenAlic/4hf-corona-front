@@ -1,0 +1,17 @@
+{
+  "user": {
+    "profile": {
+      "first_name": "First name",
+      "last_name": "Last name",
+      "notification_preference": {
+        "device_not_subscribed": "This device is not subscribed to receive push notifications.",
+        "device_subscribed": "This device is subscribed to receive push notifications.",
+        "email": "Send email notifications",
+        "push": "Send push notifications",
+        "title": "Notifications",
+        "subscribe": "Subscribe device",
+        "unsubscribe": "Unsubscribe device"
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "cookies": {
+        "enabled": true,
+        "type": "modal"
+    },
+    "api": {
+        "url": ""
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "form": {
+    "errors": {
+      "exact_character": "Must be {number} character(s).",
+      "file_type": {
+        "pdf": "File must be a .pdf file."
+      },
+      "letters": "Field can only contain letters.",
+      "min": "Must be at least {number}.",
+      "min_characters": "Must be at least {number} character(s).",
+      "max": "Cannot be more than {number}.",
+      "max_characters": "Cannot be more than {number} character(s).",
+      "required": "This field is required.",
+      "valid_email": "Must be a valid e-mail address."
+    }
+  }
+}

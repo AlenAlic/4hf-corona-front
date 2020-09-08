@@ -1,0 +1,14 @@
+{
+  "socket": {
+    "connect": "Connect",
+    "connected": "Connected:",
+    "disconnect": "Disconnect",
+    "echo": "Echo message",
+    "messages": "Messages",
+    "received": "Message received:",
+    "reset": "Reset",
+    "send": "Send",
+    "sent": "Message sent:",
+    "title": "Test sockets.io connection"
+  }
+}

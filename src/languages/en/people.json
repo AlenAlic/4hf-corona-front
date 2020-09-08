@@ -1,0 +1,25 @@
+{
+  "people": {
+    "add_new_person": {
+      "text": "Add new person",
+      "first_name": {
+        "label": "First name"
+      },
+      "last_name": {
+        "label": "Last name"
+      },
+      "email": {
+        "label": "Email"
+      },
+      "student_number": {
+        "label": "Student number"
+      }
+    },
+    "created": "Person created",
+    "headers": {
+      "full_name": "Name",
+      "email": "Email",
+      "student_number": "Student number"
+    }
+  }
+}
