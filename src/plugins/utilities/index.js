@@ -75,7 +75,7 @@ export const dateTimeToday = date => {
  * @returns {DateTime}
  */
 export const now = () => {
-  return DateTime.local();
+  return DateTime.utc();
 };
 /**
  * Get the string representation of the current DateTime
