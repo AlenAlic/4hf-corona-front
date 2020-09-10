@@ -42,7 +42,7 @@
       :accept="$t('general.create')"
       :close="$t('general.cancel')"
       @close="clearData"
-      @agree="createClass"
+      @agree="createPerson"
     >
       <v-card-title>{{ $t("people.add_new_person.text") }}</v-card-title>
       <v-card-text>
@@ -128,7 +128,7 @@ export default {
       this.email = "";
       this.student_number = "";
     },
-    createClass() {
+    createPerson() {
       this.$store
         .dispatch(CREATE_PERSON, {
           first_name: this.first_name,
