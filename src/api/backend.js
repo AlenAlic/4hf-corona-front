@@ -1,8 +1,10 @@
 import Vue from "vue";
 import axios from "axios";
 import router from "../router";
+import store from "../store";
 import { ERROR_CODES, getNetworkErrorCode, localizeNetworkErrorCode } from "../api/util/network-errors";
 import { loadItem, STORAGE } from "../api/util/token-storage";
+import { CLEAR_USER } from "@/store/modules/auth";
 
 /**
  * The axios instance which can be used to communicate with the backend.
@@ -22,6 +24,8 @@ backendServer.interceptors.response.use(
       return Promise.reject(error);
     }
     if (errorCode === ERROR_CODES.UNAUTHORIZED && router.currentRoute.meta.auth) {
+      store.commit(CLEAR_USER);
+      Vue.prototype.$toast.error(localizeNetworkErrorCode(errorCode));
       router.push({ name: "home" }).then(() => {});
       return Promise.reject(error);
     }
