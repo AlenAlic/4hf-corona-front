@@ -412,20 +412,16 @@ export default {
       this.$store.dispatch(COUPLES);
     },
     addCouple() {
-      if (this.edit) {
-        console.log("todo");
-      } else {
-        this.$store
-          .dispatch(CLASSES_ADD_COUPLE, {
-            id: this.dancing_class.id,
-            couple_id: this.couple_id
-          })
-          .then(response => {
-            this.dancing_class = response.data;
-            this.$toast.success(i18n.t("classes.add_couple.added"));
-            this.clearData();
-          });
-      }
+      this.$store
+        .dispatch(CLASSES_ADD_COUPLE, {
+          id: this.dancing_class.id,
+          couple_id: this.couple_id
+        })
+        .then(response => {
+          this.dancing_class = response.data;
+          this.$toast.success(i18n.t("classes.add_couple.added"));
+          this.clearData();
+        });
     },
     setDeleteCouple(couple) {
       this.deleteCoupleModal = true;
