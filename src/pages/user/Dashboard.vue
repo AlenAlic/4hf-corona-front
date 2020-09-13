@@ -23,6 +23,13 @@
             hide-default-footer
             :items-per-page="classes.length"
           >
+            <template v-slot:item.action="{ item }">
+              <v-btn icon :to="{ name: 'class', params: { id: item.id } }">
+                <v-icon>
+                  mdi-eye
+                </v-icon>
+              </v-btn>
+            </template>
           </v-data-table>
         </v-card>
       </v-col>
@@ -122,6 +129,10 @@ export default {
         {
           text: i18n.t("classes.headers.date"),
           value: "date"
+        },
+        {
+          value: "action",
+          align: "right"
         }
       ];
     },
