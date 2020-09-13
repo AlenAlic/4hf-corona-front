@@ -20,8 +20,6 @@
             :items="classes"
             :loading="$store.state.classes.loading"
             :search="searchClasses"
-            hide-default-footer
-            :items-per-page="classes.length"
           >
             <template v-slot:item.action="{ item }">
               <v-btn icon :to="{ name: 'class', params: { id: item.id } }">
@@ -52,8 +50,6 @@
             :items="$store.state.people.people"
             :loading="$store.state.people.loading"
             :search="searchPeople"
-            hide-default-footer
-            :items-per-page="$store.state.people.people.length"
           >
           </v-data-table>
         </v-card>
@@ -77,8 +73,6 @@
             :items="$store.state.couples.couples"
             :loading="$store.state.couples.loading"
             :search="searchCouples"
-            hide-default-footer
-            :items-per-page="$store.state.couples.couples.length"
           >
           </v-data-table>
         </v-card>

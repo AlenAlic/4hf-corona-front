@@ -19,8 +19,6 @@
         :items="$store.state.couples.couples"
         :loading="$store.state.couples.loading"
         :search="search"
-        hide-default-footer
-        :items-per-page="$store.state.couples.couples.length"
       >
         <template v-slot:item.action="{ item }">
           <v-tooltip left>
