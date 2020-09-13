@@ -16,10 +16,16 @@
       }
     },
     "created": "Person created",
+    "deleted": "Person deleted from system",
+    "delete_person": {
+      "text": "Are you sure you wish to remove this person from the system?",
+      "title": "Remove person"
+    },
     "headers": {
       "full_name": "Name",
       "email": "Email",
       "student_number": "Student number"
-    }
+    },
+    "updated": "Person data updated"
   }
 }

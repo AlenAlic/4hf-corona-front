@@ -4,7 +4,13 @@
       <v-card-title>
         {{ $t("general.people") }}
         <v-spacer />
-        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          :label="$t('general.search')"
+          single-line
+          hide-details
+        ></v-text-field>
         <v-spacer />
         <v-btn color="primary" @click="modal = true">{{ $t("people.add_new_person.text") }}</v-btn>
       </v-card-title>
@@ -16,10 +22,10 @@
         hide-default-footer
         :items-per-page="$store.state.people.people.length"
       >
-        <template v-slot:item.action>
+        <template v-slot:item.action="{ item }">
           <v-tooltip left>
             <template v-slot:activator="{ on }">
-              <v-icon class="mr-3" v-on="on" @click="$toast.warning($t('general.nyi'))">
+              <v-icon class="mr-3" v-on="on" @click="setEditPerson(item)">
                 mdi-pencil
               </v-icon>
             </template>
@@ -27,7 +33,7 @@
           </v-tooltip>
           <v-tooltip left>
             <template v-slot:activator="{ on }">
-              <v-icon class="mr-3" v-on="on" @click="$toast.warning($t('general.nyi'))">
+              <v-icon class="mr-3" v-on="on" @click="setDeletePerson(item)">
                 mdi-delete
               </v-icon>
             </template>
@@ -39,7 +45,7 @@
     <modal
       v-model="modal"
       v-if="modal"
-      :accept="$t('general.create')"
+      :accept="edit ? $t('general.save_changes') : $t('general.create')"
       :close="$t('general.cancel')"
       @close="clearData"
       @agree="createPerson"
@@ -67,24 +73,36 @@
         <v-text-field v-model="student_number" :label="$t('people.add_new_person.student_number.label')" />
       </v-card-text>
     </modal>
+    <modal
+      v-model="deleteModal"
+      :title="$t('people.delete_person.title')"
+      :text="$t('people.delete_person.text')"
+      :accept="$t('general.delete')"
+      :close="$t('general.cancel')"
+      @close="clearData"
+      @agree="deletePerson"
+    ></modal>
   </v-container>
 </template>
 
 <script>
 import Modal from "@/components/modal/Modal";
+import { PEOPLE, CREATE_PERSON, EDIT_PERSON, DELETE_PERSON } from "@/store/modules/people";
 import i18n from "@/languages";
-import { PEOPLE, CREATE_PERSON } from "@/store/modules/people";
 
 export default {
   components: { Modal },
   data: function() {
     return {
       modal: false,
+      edit: false,
       search: "",
+      id: null,
       first_name: "",
       last_name: "",
       email: "",
-      student_number: ""
+      student_number: "",
+      deleteModal: false
     };
   },
   created() {
@@ -123,23 +141,59 @@ export default {
   },
   methods: {
     clearData() {
+      this.edit = false;
+      this.id = null;
       this.first_name = "";
       this.last_name = "";
       this.email = "";
       this.student_number = "";
     },
+    setEditPerson(person) {
+      this.edit = true;
+      this.modal = true;
+      this.id = person.id;
+      this.first_name = person.first_name;
+      this.last_name = person.last_name;
+      this.email = person.email;
+      this.student_number = person.student_number;
+    },
     createPerson() {
-      this.$store
-        .dispatch(CREATE_PERSON, {
-          first_name: this.first_name,
-          last_name: this.last_name,
-          email: this.email,
-          student_number: this.student_number
-        })
-        .then(() => {
-          this.$toast.success(i18n.t("people.created"));
-          this.clearData();
-        });
+      if (this.edit) {
+        this.$store
+          .dispatch(EDIT_PERSON, {
+            id: this.id,
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            student_number: this.student_number
+          })
+          .then(() => {
+            this.$toast.success(i18n.t("people.updated"));
+            this.clearData();
+          });
+      } else {
+        this.$store
+          .dispatch(CREATE_PERSON, {
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            student_number: this.student_number
+          })
+          .then(() => {
+            this.$toast.success(i18n.t("people.created"));
+            this.clearData();
+          });
+      }
+    },
+    setDeletePerson(person) {
+      this.deleteModal = true;
+      this.id = person.id;
+    },
+    deletePerson() {
+      this.$store.dispatch(DELETE_PERSON, { id: this.id }).then(() => {
+        this.$toast.success(i18n.t("people.deleted"));
+        this.clearData();
+      });
     }
   }
 };
