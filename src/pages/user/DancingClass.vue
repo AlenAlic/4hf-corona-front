@@ -189,21 +189,13 @@
       </v-card-text>
     </modal>
   </v-container>
-  <v-container class="fill-height" fluid v-else-if="!dancing_class && loading">
-    <v-row align="center" justify="center" class="text-center">
-      <v-col cols="12">
-        <v-progress-circular color="primary" :size="80" :width="8" indeterminate />
-      </v-col>
-      <v-col cols="12">
-        <h3>{{ $t("general.loading") }}</h3>
-      </v-col>
-    </v-row>
-  </v-container>
+  <loading-page v-else-if="!dancing_class && loading" />
 </template>
 
 <script>
 import i18n from "@/languages";
 import Modal from "@/components/modal/Modal";
+import LoadingPage from "@/pages/LoadingPage";
 import { PEOPLE } from "@/store/modules/people";
 import {
   CLASSES_ADD_ATTENDEE,
@@ -216,7 +208,7 @@ import {
 import { COUPLES } from "@/store/modules/couples";
 
 export default {
-  components: { Modal },
+  components: { Modal, LoadingPage },
   data: function() {
     return {
       addAttendeeModal: false,
