@@ -5,6 +5,7 @@
     "cancel": "Cancel",
     "classes": "Classes",
     "close": "Close",
+    "couples": "Couples",
     "create": "Create",
     "delete": "Delete",
     "edit": "Edit",
@@ -14,7 +15,9 @@
     "ok": "OK",
     "profile": "Profile",
     "people": "People",
+    "remove": "Remove",
     "save_changes": "Save changes",
+    "search": "Search",
     "security": "Security"
   }
 }
