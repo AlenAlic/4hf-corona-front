@@ -2,7 +2,7 @@
   <v-navigation-drawer :value="drawer" @input="toggleDrawer" :clipped="breakpoint" :permanent="breakpoint" app>
     <v-list dense>
       <v-row class="mb-3" justify="center">
-        <v-img alt="Logo Vue" src="../../assets/logo-vuetify.svg" max-height="80" max-width="80" />
+        <v-img alt="Logo altris" src="../../assets/altris.png" max-height="40" max-width="160" />
       </v-row>
       <v-list-item :to="{ name: 'dashboard' }">
         <v-list-item-icon>
