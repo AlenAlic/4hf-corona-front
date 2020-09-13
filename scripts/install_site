@@ -40,7 +40,7 @@ bash -c 'cat > public/config/config.json' << EOL
         "type": "banner"
     },
     "api": {
-        "url": "https://$API_SUBDOMAIN"
+        "url": "https://$API_SUBDOMAIN/api"
     }
 }
 EOL
