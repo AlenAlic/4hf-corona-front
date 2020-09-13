@@ -233,6 +233,7 @@ export default {
   },
   created() {
     this.getData();
+    this.$store.dispatch(PEOPLE);
   },
   computed: {
     attendees() {
@@ -333,7 +334,6 @@ export default {
     },
     openModal() {
       this.addAttendeeModal = true;
-      this.$store.dispatch(PEOPLE);
     },
     clearData() {
       this.edit = false;
