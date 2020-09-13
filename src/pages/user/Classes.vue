@@ -4,7 +4,13 @@
       <v-card-title>
         {{ $t("general.classes") }}
         <v-spacer />
-        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          :label="$t('general.search')"
+          single-line
+          hide-details
+        ></v-text-field>
         <v-spacer />
         <v-btn color="primary" @click="modal = true">{{ $t("classes.add_new_class.text") }}</v-btn>
       </v-card-title>
@@ -24,7 +30,7 @@
           </v-btn>
           <v-tooltip left>
             <template v-slot:activator="{ on }">
-              <v-icon class="mr-3" v-on="on" @click="$toast.warning($t('general.nyi'))">
+              <v-icon class="mr-3" v-on="on" @click="setEditClass(item)">
                 mdi-pencil
               </v-icon>
             </template>
@@ -32,7 +38,7 @@
           </v-tooltip>
           <v-tooltip left>
             <template v-slot:activator="{ on }">
-              <v-icon class="mr-3" v-on="on" @click="$toast.warning($t('general.nyi'))">
+              <v-icon class="mr-3" v-on="on" @click="setDeleteClass(item)">
                 mdi-delete
               </v-icon>
             </template>
@@ -44,7 +50,7 @@
     <modal
       v-model="modal"
       v-if="modal"
-      :accept="$t('general.create')"
+      :accept="edit ? $t('general.save_changes') : $t('general.create')"
       :close="$t('general.cancel')"
       @close="clearData"
       @agree="createClass"
@@ -60,13 +66,22 @@
         <v-datetime-picker v-model="datetime" :label="$t('classes.add_new_class.datetime.label')" />
       </v-card-text>
     </modal>
+    <modal
+      v-model="deleteModal"
+      :title="$t('classes.delete_class.title')"
+      :text="$t('classes.delete_class.text')"
+      :accept="$t('general.delete')"
+      :close="$t('general.cancel')"
+      @close="clearData"
+      @agree="deletePerson"
+    ></modal>
   </v-container>
 </template>
 
 <script>
 import Modal from "@/components/modal/Modal";
 import VDatetimePicker from "@/components/Vuetify/VDatetimePicker";
-import { CREATE_CLASS } from "@/store/modules/classes";
+import { CREATE_CLASS, EDIT_CLASS, DELETE_CLASS } from "@/store/modules/classes";
 import i18n from "@/languages";
 
 export default {
@@ -74,9 +89,12 @@ export default {
   data: function() {
     return {
       modal: false,
+      edit: false,
       search: "",
+      id: null,
       name: "",
-      datetime: ""
+      datetime: "",
+      deleteModal: false
     };
   },
   computed: {
@@ -112,12 +130,38 @@ export default {
   },
   methods: {
     clearData() {
+      this.edit = false;
+      this.id = null;
       this.name = "";
       this.datetime = "";
     },
+    setEditClass(dancing_class) {
+      this.edit = true;
+      this.id = dancing_class.id;
+      this.name = dancing_class.name;
+      this.datetime = this.$util.dateTimeString(dancing_class.datetime);
+      this.modal = true;
+    },
     createClass() {
-      this.$store.dispatch(CREATE_CLASS, { name: this.name, datetime: this.datetime }).then(() => {
-        this.$toast.success(i18n.t("classes.created"));
+      if (this.edit) {
+        this.$store.dispatch(EDIT_CLASS, { id: this.id, name: this.name, datetime: this.datetime }).then(() => {
+          this.$toast.success(i18n.t("classes.updated"));
+          this.clearData();
+        });
+      } else {
+        this.$store.dispatch(CREATE_CLASS, { name: this.name, datetime: this.datetime }).then(() => {
+          this.$toast.success(i18n.t("classes.created"));
+          this.clearData();
+        });
+      }
+    },
+    setDeleteClass(dancing_class) {
+      this.deleteModal = true;
+      this.id = dancing_class.id;
+    },
+    deletePerson() {
+      this.$store.dispatch(DELETE_CLASS, { id: this.id }).then(() => {
+        this.$toast.success(i18n.t("classes.deleted"));
         this.clearData();
       });
     }
