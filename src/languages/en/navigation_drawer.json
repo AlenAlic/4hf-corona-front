@@ -1,6 +1,7 @@
 {
   "navigation_drawer": {
     "classes": "Classes",
+    "couples": "Couples",
     "dashboard": "Dashboard",
     "people": "People",
     "todays_classes": "Today's classes"

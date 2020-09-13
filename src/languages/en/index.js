@@ -2,6 +2,7 @@
 import application from "./application";
 import auth from "./auth";
 import classes from "./classes";
+import couple from "./couple";
 import cookies from "./cookies";
 import form from "./form";
 import general from "./general";
@@ -18,6 +19,7 @@ const gb = {
   ...application,
   ...auth,
   ...classes,
+  ...couple,
   ...cookies,
   ...form,
   ...general,

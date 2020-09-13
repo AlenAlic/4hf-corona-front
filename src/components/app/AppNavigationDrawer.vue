@@ -22,10 +22,18 @@
       </v-list-item>
       <v-list-item :to="{ name: 'people' }">
         <v-list-item-icon>
-          <v-icon>mdi-account-multiple</v-icon>
+          <v-icon>mdi-account</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t("navigation_drawer.people") }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item :to="{ name: 'couple' }">
+        <v-list-item-icon>
+          <v-icon>mdi-account-multiple</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ $t("navigation_drawer.couples") }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-divider class="mt-1" />

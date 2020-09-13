@@ -1,0 +1,24 @@
+{
+  "couple": {
+    "add_new_couple": {
+      "text": "Add new couple",
+      "lead": {
+        "label": "Lead"
+      },
+      "follow": {
+        "label": "Follow"
+      }
+    },
+    "created": "Couple created",
+    "deleted": "Couple deleted from system",
+    "delete_couple": {
+      "text": "Are you sure you wish to remove this couple from the system?",
+      "title": "Remove couple"
+    },
+    "headers": {
+      "lead": "Lead",
+      "follow": "Follow"
+    },
+    "updated": "Couple data updated"
+  }
+}
