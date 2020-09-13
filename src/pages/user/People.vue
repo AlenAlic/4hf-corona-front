@@ -64,7 +64,7 @@
         />
         <v-text-field
           v-model="email"
-          :rules="[$form.fieldRequired]"
+          :rules="[$form.fieldRequired, $form.fieldIsEmail]"
           :label="$t('people.add_new_person.email.label')"
           required
         />
