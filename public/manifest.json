@@ -1,6 +1,6 @@
 {
-  "name": "Vue Boilerplate",
-  "short_name": "VB",
+  "name": "Dancer Corona tracker",
+  "short_name": "DCT",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
