@@ -415,7 +415,7 @@ export default {
       this.$store
         .dispatch(CLASSES_ADD_COUPLE, {
           id: this.dancing_class.id,
-          couple_id: this.couple_id
+          couple_id: this.couple.id
         })
         .then(response => {
           this.dancing_class = response.data;
