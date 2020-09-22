@@ -3,7 +3,10 @@
     <v-app-bar-nav-icon v-if="!breakpoint" @click.stop="$emit('toggleDrawer')"></v-app-bar-nav-icon>
 
     <v-toolbar-title v-if="breakpoint">{{ $t("app.title") }}</v-toolbar-title>
-    <v-toolbar-title v-else>{{ $t("app.title_short") }}</v-toolbar-title>
+    <v-toolbar-title v-else class="pl-2">{{ $t("app.title_short") }}</v-toolbar-title>
+    <v-icon class="ml-5" :color="$socket.connected ? 'success' : 'error'" @click="connectSocket">
+      mdi-checkbox-blank-circle
+    </v-icon>
 
     <v-spacer />
 
@@ -49,6 +52,9 @@ export default {
   props: {
     breakpoint: { type: Boolean, default: false }
   },
+  created() {
+    this.connectSocket();
+  },
   methods: {
     signOut() {
       this.$auth.signOut().then(() => {
@@ -56,7 +62,14 @@ export default {
           name: "home"
         });
       });
+    },
+    connectSocket() {
+      this.$socket.client.io.opts.query = { token: this.$store.state.auth.token };
+      this.$socket.client.open();
     }
+  },
+  beforeDestroy() {
+    this.$socket.client.close();
   }
 };
 </script>

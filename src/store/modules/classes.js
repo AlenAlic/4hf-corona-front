@@ -29,6 +29,8 @@ export {
   CREATE_CLASS,
   EDIT_CLASS,
   DELETE_CLASS,
+  UPDATE_CLASS,
+  SET_CLASSES,
   CLASSES_ADD_ATTENDEE,
   CLASSES_EDIT_ATTENDEE,
   CLASSES_DELETE_ATTENDEE,
@@ -110,6 +112,7 @@ export default {
         .then(response => {
           commit(CLASSES_SUCCESS);
           commit(UPDATE_CLASS, response.data);
+          return id;
         })
         .catch(error => {
           commit(CLASSES_ERROR);
@@ -123,6 +126,7 @@ export default {
         .then(() => {
           commit(CLASSES_SUCCESS);
           commit(DELETE_CLASS, id);
+          return id;
         })
         .catch(error => {
           commit(CLASSES_ERROR);

@@ -167,8 +167,9 @@ export default {
             email: this.email,
             student_number: this.student_number
           })
-          .then(() => {
+          .then(id => {
             this.$toast.success(i18n.t("people.updated"));
+            this.$socket.client.emit("person_updated", id);
             this.clearData();
           });
       } else {
@@ -181,6 +182,7 @@ export default {
           })
           .then(() => {
             this.$toast.success(i18n.t("people.created"));
+            this.$socket.client.emit("person_created");
             this.clearData();
           });
       }
@@ -190,8 +192,9 @@ export default {
       this.id = person.id;
     },
     deletePerson() {
-      this.$store.dispatch(DELETE_PERSON, { id: this.id }).then(() => {
+      this.$store.dispatch(DELETE_PERSON, { id: this.id }).then(id => {
         this.$toast.success(i18n.t("people.deleted"));
+        this.$socket.client.emit("person_deleted", id);
         this.clearData();
       });
     }

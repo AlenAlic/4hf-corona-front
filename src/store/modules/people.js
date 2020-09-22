@@ -13,7 +13,7 @@ const CREATE_PERSON = "CREATE_PERSON";
 const EDIT_PERSON = "EDIT_PERSON";
 const DELETE_PERSON = "DELETE_PERSON";
 
-export { PEOPLE, CREATE_PERSON, EDIT_PERSON, DELETE_PERSON };
+export { PEOPLE, CREATE_PERSON, EDIT_PERSON, DELETE_PERSON, UPDATE_PERSON, SET_PEOPLE };
 
 export default {
   state: {
@@ -92,6 +92,7 @@ export default {
         .then(response => {
           commit(PEOPLE_SUCCESS);
           commit(UPDATE_PERSON, response.data);
+          return id;
         })
         .catch(error => {
           commit(PEOPLE_ERROR);
@@ -105,6 +106,7 @@ export default {
         .then(() => {
           commit(PEOPLE_SUCCESS);
           commit(DELETE_PERSON, id);
+          return id;
         })
         .catch(error => {
           commit(PEOPLE_ERROR);

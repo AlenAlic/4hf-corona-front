@@ -13,7 +13,7 @@ const CREATE_COUPLE = "CREATE_COUPLE";
 const EDIT_COUPLE = "EDIT_COUPLE";
 const DELETE_COUPLE = "DELETE_COUPLE";
 
-export { COUPLES, CREATE_COUPLE, EDIT_COUPLE, DELETE_COUPLE };
+export { COUPLES, CREATE_COUPLE, EDIT_COUPLE, DELETE_COUPLE, UPDATE_COUPLE, SET_COUPLES };
 
 export default {
   state: {
@@ -90,6 +90,7 @@ export default {
         .then(response => {
           commit(COUPLES_SUCCESS);
           commit(UPDATE_COUPLE, response.data);
+          return id;
         })
         .catch(error => {
           commit(COUPLES_ERROR);
@@ -103,6 +104,7 @@ export default {
         .then(() => {
           commit(COUPLES_SUCCESS);
           commit(DELETE_COUPLE, id);
+          return id;
         })
         .catch(error => {
           commit(COUPLES_ERROR);

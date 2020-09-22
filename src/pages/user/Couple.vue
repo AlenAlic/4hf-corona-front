@@ -182,8 +182,9 @@ export default {
             lead_id: this.lead.id,
             follow_id: this.follow.id
           })
-          .then(() => {
+          .then(id => {
             this.$toast.success(i18n.t("couple.updated"));
+            this.$socket.client.emit("couple_updated", id);
             this.clearData();
           });
       } else {
@@ -194,6 +195,7 @@ export default {
           })
           .then(() => {
             this.$toast.success(i18n.t("couple.created"));
+            this.$socket.client.emit("couple_created");
             this.clearData();
           });
       }
@@ -203,8 +205,9 @@ export default {
       this.id = person.id;
     },
     deleteCouple() {
-      this.$store.dispatch(DELETE_COUPLE, { id: this.id }).then(() => {
+      this.$store.dispatch(DELETE_COUPLE, { id: this.id }).then(id => {
         this.$toast.success(i18n.t("couple.deleted"));
+        this.$socket.client.emit("couple_deleted", id);
         this.clearData();
       });
     }

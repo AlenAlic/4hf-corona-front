@@ -146,13 +146,15 @@ export default {
     },
     createClass() {
       if (this.edit) {
-        this.$store.dispatch(EDIT_CLASS, { id: this.id, name: this.name, datetime: this.datetime }).then(() => {
+        this.$store.dispatch(EDIT_CLASS, { id: this.id, name: this.name, datetime: this.datetime }).then(id => {
           this.$toast.success(i18n.t("classes.updated"));
+          this.$socket.client.emit("dancing_class_updated", id);
           this.clearData();
         });
       } else {
         this.$store.dispatch(CREATE_CLASS, { name: this.name, datetime: this.datetime }).then(() => {
           this.$toast.success(i18n.t("classes.created"));
+          this.$socket.client.emit("dancing_class_created");
           this.clearData();
         });
       }
@@ -162,8 +164,9 @@ export default {
       this.id = dancing_class.id;
     },
     deletePerson() {
-      this.$store.dispatch(DELETE_CLASS, { id: this.id }).then(() => {
+      this.$store.dispatch(DELETE_CLASS, { id: this.id }).then(id => {
         this.$toast.success(i18n.t("classes.deleted"));
+        this.$socket.client.emit("dancing_class_deleted", id);
         this.clearData();
       });
     }

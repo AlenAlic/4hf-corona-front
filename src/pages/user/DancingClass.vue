@@ -334,6 +334,9 @@ export default {
           this.loading = false;
         });
     },
+    emitUpdate() {
+      this.$socket.client.emit("update_dancing_class", this.$route.params.id);
+    },
     openModal() {
       this.addAttendeeModal = true;
     },
@@ -369,6 +372,7 @@ export default {
             this.dancing_class = response.data;
             this.$toast.success(i18n.t("classes.add_attendee.updated"));
             this.clearData();
+            this.emitUpdate();
           });
       } else {
         this.$store
@@ -377,6 +381,7 @@ export default {
             this.dancing_class = response.data;
             this.$toast.success(i18n.t("classes.add_attendee.added"));
             this.clearData();
+            this.emitUpdate();
           });
       }
     },
@@ -391,6 +396,7 @@ export default {
           this.dancing_class = response.data;
           this.$toast.success(i18n.t("classes.add_attendee.deleted"));
           this.clearData();
+          this.emitUpdate();
         });
     },
     openCreateCoupleModal() {
@@ -407,6 +413,7 @@ export default {
           this.dancing_class = response.data;
           this.$toast.success(i18n.t("classes.create_couple.created"));
           this.clearData();
+          this.emitUpdate();
         });
     },
     openAddCoupleModal() {
@@ -423,6 +430,7 @@ export default {
           this.dancing_class = response.data;
           this.$toast.success(i18n.t("classes.add_couple.added"));
           this.clearData();
+          this.emitUpdate();
         });
     },
     setDeleteCouple(couple) {
@@ -436,7 +444,15 @@ export default {
           this.dancing_class = response.data;
           this.$toast.success(i18n.t("classes.add_couple.deleted"));
           this.clearData();
+          this.emitUpdate();
         });
+    }
+  },
+  sockets: {
+    update_dancing_class(dancing_class) {
+      if (Number(dancing_class.id) === Number(this.$route.params.id)) {
+        this.dancing_class = dancing_class;
+      }
     }
   },
   watch: {
