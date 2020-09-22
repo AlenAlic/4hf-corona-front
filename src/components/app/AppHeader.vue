@@ -2,7 +2,8 @@
   <v-app-bar dark app :clipped-left="breakpoint" color="primary">
     <v-app-bar-nav-icon v-if="!breakpoint" @click.stop="$emit('toggleDrawer')"></v-app-bar-nav-icon>
 
-    <v-toolbar-title>{{ $t("app.title") }}</v-toolbar-title>
+    <v-toolbar-title v-if="breakpoint">{{ $t("app.title") }}</v-toolbar-title>
+    <v-toolbar-title v-else>{{ $t("app.title_short") }}</v-toolbar-title>
 
     <v-spacer />
 

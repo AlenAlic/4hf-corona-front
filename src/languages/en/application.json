@@ -1,5 +1,6 @@
 {
   "app": {
-    "title": "Dancer Corona Tracker"
+    "title": "Dancer Corona Tracker",
+    "title_short": "DCT"
   }
 }
