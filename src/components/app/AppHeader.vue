@@ -4,9 +4,9 @@
 
     <v-toolbar-title v-if="breakpoint">{{ $t("app.title") }}</v-toolbar-title>
     <v-toolbar-title v-else class="pl-2">{{ $t("app.title_short") }}</v-toolbar-title>
-    <!--    <v-icon class="ml-5" :color="$socket.connected ? 'success' : 'error'" @click="connectSocket">-->
-    <!--      mdi-checkbox-blank-circle-->
-    <!--    </v-icon>-->
+    <v-icon class="ml-5" :color="$socket.connected ? 'success' : 'error'" @click="toggleConnection">
+      mdi-checkbox-blank-circle
+    </v-icon>
 
     <v-spacer />
 
@@ -63,13 +63,23 @@ export default {
         });
       });
     },
+    toggleConnection() {
+      if (this.$socket.connected) {
+        this.disconnectSocket();
+      } else {
+        this.connectSocket();
+      }
+    },
     connectSocket() {
       this.$socket.client.io.opts.query = { token: this.$store.state.auth.token };
       this.$socket.client.open();
+    },
+    disconnectSocket() {
+      this.$socket.client.close();
     }
   },
   beforeDestroy() {
-    this.$socket.client.close();
+    this.disconnectSocket();
   }
 };
 </script>
