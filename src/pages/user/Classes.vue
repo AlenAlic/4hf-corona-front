@@ -38,7 +38,7 @@
             </template>
             <span>{{ $t("general.edit") }}</span>
           </v-tooltip>
-          <v-tooltip left>
+          <v-tooltip left v-if="$store.getters.isAdmin || $store.getters.isBoard">
             <template v-slot:activator="{ on }">
               <v-icon class="mr-3" v-on="on" @click="setDeleteClass(item)">
                 mdi-delete
