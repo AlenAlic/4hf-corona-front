@@ -3,6 +3,7 @@ import Vue from "vue";
 import { loadItem, saveItem, STORAGE } from "../../api/util/token-storage";
 import { getUser } from "../../api/user";
 import { authApi } from "../../api/auth";
+import { ADMIN, BOARD, USER } from "@/constants";
 
 const SET_USER = "SET_USER";
 const CLEAR_USER = "CLEAR_USER";
@@ -224,6 +225,15 @@ export default {
     },
     access: state => {
       return state.user ? state.user.access : -1;
+    },
+    isAdmin: state => {
+      return state.user && state.user.access === ADMIN;
+    },
+    isBoard: state => {
+      return state.user && state.user.access === BOARD;
+    },
+    isUser: state => {
+      return state.user && state.user.access === USER;
     }
   }
 };
