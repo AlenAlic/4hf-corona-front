@@ -16,17 +16,19 @@
           hide-details
         ></v-text-field>
         <v-spacer />
-        <div>
-          <v-row class="mb-3" no-gutters justify="end">
-            <v-btn color="primary" @click="openAddCoupleModal">{{ $t("classes.add_couple.text") }}</v-btn>
-          </v-row>
-          <v-row class="mb-5" no-gutters justify="end">
-            <v-btn color="primary" @click="openModal">{{ $t("classes.add_attendee.text") }}</v-btn>
-          </v-row>
-          <v-row no-gutters justify="end">
-            <v-btn color="secondary" @click="openCreateCoupleModal">{{ $t("classes.create_couple.text") }}</v-btn>
-          </v-row>
-        </div>
+        <v-row no-gutters justify="end">
+          <v-col cols="12">
+            <v-row class="my-3" no-gutters justify="end">
+              <v-btn color="primary" @click="openAddCoupleModal">{{ $t("classes.add_couple.text") }}</v-btn>
+            </v-row>
+            <v-row class="mb-5" no-gutters justify="end">
+              <v-btn color="primary" @click="openModal">{{ $t("classes.add_attendee.text") }}</v-btn>
+            </v-row>
+            <v-row no-gutters justify="end">
+              <v-btn color="secondary" @click="openCreateCoupleModal">{{ $t("classes.create_couple.text") }}</v-btn>
+            </v-row>
+          </v-col>
+        </v-row>
       </v-card-title>
       <v-tabs fixed-tabs background-color="primary" dark v-model="tabs">
         <v-tab>{{ $t("classes.attendees.text") }} ({{ attendees.length }})</v-tab>

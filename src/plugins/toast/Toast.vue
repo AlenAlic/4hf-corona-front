@@ -37,7 +37,7 @@ export default {
     message: { type: String, default: "" },
     timeout: { type: Number, default: 6000 },
     dismissible: { type: Boolean, default: false },
-    multiLine: { type: Boolean, default: true },
+    multiLine: { type: Boolean, default: false },
     vertical: { type: Boolean, default: false },
     showClose: { type: Boolean, default: true },
     closeText: { type: String, default: "close" },

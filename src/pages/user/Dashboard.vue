@@ -13,7 +13,6 @@
               single-line
               hide-details
             ></v-text-field>
-            <v-spacer />
           </v-card-title>
           <v-data-table
             :headers="headersClasses"
@@ -43,7 +42,6 @@
               single-line
               hide-details
             ></v-text-field>
-            <v-spacer />
           </v-card-title>
           <v-data-table
             :headers="headersPeople"
@@ -66,7 +64,6 @@
               single-line
               hide-details
             ></v-text-field>
-            <v-spacer />
           </v-card-title>
           <v-data-table
             :headers="headersCouple"

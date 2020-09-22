@@ -12,7 +12,9 @@
           hide-details
         ></v-text-field>
         <v-spacer />
-        <v-btn color="primary" @click="modal = true">{{ $t("people.add_new_person.text") }}</v-btn>
+        <v-row no-gutters justify="end">
+          <v-btn color="primary" class="my-3" @click="modal = true">{{ $t("people.add_new_person.text") }}</v-btn>
+        </v-row>
       </v-card-title>
       <v-data-table
         :headers="headers"
