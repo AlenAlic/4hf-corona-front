@@ -4,9 +4,9 @@
 
     <v-toolbar-title v-if="breakpoint">{{ $t("app.title") }}</v-toolbar-title>
     <v-toolbar-title v-else class="pl-2">{{ $t("app.title_short") }}</v-toolbar-title>
-    <v-icon class="ml-5" :color="$socket.connected ? 'success' : 'error'" @click="connectSocket">
-      mdi-checkbox-blank-circle
-    </v-icon>
+    <!--    <v-icon class="ml-5" :color="$socket.connected ? 'success' : 'error'" @click="connectSocket">-->
+    <!--      mdi-checkbox-blank-circle-->
+    <!--    </v-icon>-->
 
     <v-spacer />
 
@@ -52,9 +52,9 @@ export default {
   props: {
     breakpoint: { type: Boolean, default: false }
   },
-  created() {
-    this.connectSocket();
-  },
+  // created() {
+  //   this.connectSocket();
+  // },
   methods: {
     signOut() {
       this.$auth.signOut().then(() => {
