@@ -20,7 +20,7 @@ backendServer.interceptors.response.use(
   error => {
     const errorCode = getNetworkErrorCode(error);
     if (errorCode === ERROR_CODES.NETWORK || errorCode === ERROR_CODES.SERVER_ERROR) {
-      Vue.$toast.error(localizeNetworkErrorCode(errorCode));
+      Vue.prototype.$toast.error(localizeNetworkErrorCode(errorCode));
       return Promise.reject(error);
     }
     if (errorCode === ERROR_CODES.UNAUTHORIZED && router.currentRoute.meta.auth) {
