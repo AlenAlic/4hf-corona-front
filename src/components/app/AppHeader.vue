@@ -52,9 +52,9 @@ export default {
   props: {
     breakpoint: { type: Boolean, default: false }
   },
-  // created() {
-  //   this.connectSocket();
-  // },
+  created() {
+    this.connectSocket();
+  },
   methods: {
     signOut() {
       this.$auth.signOut().then(() => {
