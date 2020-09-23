@@ -26,7 +26,7 @@ import toast from "./plugins/toast";
 Vue.use(toast);
 import VueSocketIOExt from "vue-socket.io-extended";
 import io from "socket.io-client";
-Vue.use(VueSocketIOExt, io(process.env.SOCKET_URL, { autoConnect: true, transports: ["websocket"] }));
+Vue.use(VueSocketIOExt, io(process.env.SOCKET_URL, { autoConnect: false }));
 
 // External flag css
 import "flag-icon-css/css/flag-icon.min.css";

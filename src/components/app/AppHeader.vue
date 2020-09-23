@@ -71,7 +71,7 @@ export default {
       }
     },
     connectSocket() {
-      // this.$socket.client.io.opts.query = { token: this.$store.state.auth.token };
+      this.$socket.client.io.opts.query = { token: this.$store.state.auth.token, sid: String(new Date().getTime()) };
       this.$socket.client.open();
     },
     disconnectSocket() {
