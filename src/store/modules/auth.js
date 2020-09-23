@@ -37,22 +37,7 @@ const PROFILE_REQUEST = "PROFILE: Profile request sent.";
 const PROFILE_SUCCESS = "PROFILE: Successful request.";
 const PROFILE_ERROR = "PROFILE: Failed request.";
 
-const UPDATE_NOTIFICATION_PREFERENCE = "UPDATE_NOTIFICATION_PREFERENCE";
-
-const NOTIFICATION_PREFERENCE_REQUEST = "NOTIFICATION_PREFERENCE: Request sent.";
-const NOTIFICATION_PREFERENCE_SUCCESS = "NOTIFICATION_PREFERENCE: Successful request.";
-const NOTIFICATION_PREFERENCE_ERROR = "NOTIFICATION_PREFERENCE: Failed request.";
-
-export {
-  LOGIN,
-  LOGOUT,
-  RENEW,
-  CHANGE_PASSWORD,
-  SET_PROFILE,
-  UPDATE_PROFILE,
-  CLEAR_USER,
-  UPDATE_NOTIFICATION_PREFERENCE
-};
+export { LOGIN, LOGOUT, RENEW, CHANGE_PASSWORD, SET_PROFILE, UPDATE_PROFILE, CLEAR_USER };
 
 const setUser = token => {
   saveItem(STORAGE.AUTH_TOKEN, token);
@@ -108,11 +93,7 @@ export default {
     },
     [PROFILE_ERROR](state) {
       state.loadingProfile = false;
-    },
-
-    [NOTIFICATION_PREFERENCE_REQUEST]() {},
-    [NOTIFICATION_PREFERENCE_SUCCESS]() {},
-    [NOTIFICATION_PREFERENCE_ERROR]() {}
+    }
   },
   actions: {
     [SET_USER]: ({ commit }, token) => {
@@ -201,21 +182,6 @@ export default {
         })
         .catch(() => {
           commit(PROFILE_ERROR);
-        });
-    },
-    [UPDATE_NOTIFICATION_PREFERENCE]({ commit }, { email_notifications, push_notifications }) {
-      commit(NOTIFICATION_PREFERENCE_REQUEST);
-      return Vue.axios
-        .patch("/user/notification_preference", {
-          email_notifications: email_notifications,
-          push_notifications: push_notifications
-        })
-        .then(response => {
-          commit(NOTIFICATION_PREFERENCE_SUCCESS);
-          commit(SET_PROFILE, response.data);
-        })
-        .catch(() => {
-          commit(NOTIFICATION_PREFERENCE_ERROR);
         });
     }
   },
